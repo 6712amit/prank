@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security Alert</title>
+    <style>
+        body {
+            background-color: black;
+            color: red;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        .warning {
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 50px;
+        }
+        .countdown {
+            font-size: 30px;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        .flash {
+            animation: flash 0.5s infinite alternate;
+        }
+        @keyframes flash {
+            0% { background-color: black; }
+            100% { background-color: red; }
+        }
+    </style>
+</head>
+<body>
+    <h1 class="warning">⚠ WARNING: Unauthorized Access Detected ⚠</h1>
+    <p>Your device is locked due to suspicious activity.</p>
+    <p>System Security Scan in Progress...</p>
+    <p class="countdown" id="timer">10</p>
+    <script>
+        // Disable touch gestures
+        document.body.style.pointerEvents = "none";
+        
+        // Vibration Effect
+        if (navigator.vibrate) {
+            navigator.vibrate([500, 200, 500, 200, 1000]);
+        }
+        
+        // Flashing Red Screen Effect
+        document.body.classList.add("flash");
+        
+        // Countdown Timer
+        let timeLeft = 10;
+        const countdown = setInterval(() => {
+            timeLeft--;
+            document.getElementById("timer").innerText = timeLeft;
+            if (timeLeft === 0) {
+                clearInterval(countdown);
+                document.body.innerHTML = "<h1 style='color: white;'>⚠ SYSTEM LOCKDOWN ⚠</h1><p style='color: red;'>Your device has been locked. Contact Support.</p>";
+            }
+        }, 1000);
+        
+        // Play Warning Sound
+        let audio = new Audio("https://www.soundjay.com/button/beep-07.wav");
+        setInterval(() => {
+            audio.play();
+        }, 2000);
+    </script>
+</body>
+</html>
