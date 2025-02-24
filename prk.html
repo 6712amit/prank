@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Security Alert</title>
+    <style>
+        body { 
+            background-color: black; 
+            color: red; 
+            text-align: center; 
+            font-family: Arial, sans-serif; 
+        }
+        h1 { font-size: 30px; margin-top: 100px; }
+        #warning { font-size: 20px; }
+    </style>
+    <script>
+        function prank() {
+            // Make the phone vibrate (works on most phones)
+            if (navigator.vibrate) { navigator.vibrate([500, 300, 500, 300, 500]); }
+
+            // Log messages to console to make it look like a hack
+            setInterval(() => { console.log("System Error..."); }, 100);
+
+            // Fake security alerts
+            setTimeout(() => { alert("⚠️ Security Breach Detected!"); }, 2000);
+            setTimeout(() => { alert("🔴 Your phone has been accessed remotely!"); }, 5000);
+            setTimeout(() => { alert("📡 Tracking your location..."); }, 7000);
+            setTimeout(() => { alert("🔓 Your personal data is being transferred..."); }, 9000);
+
+            // Fake Restart Countdown
+            setTimeout(() => {
+                document.body.innerHTML = "<h1>🔴 System Restarting...</h1><h2>ETA: 30 seconds</h2>";
+            }, 12000);
+        }
+        
+        // Run prank when the page loads
+        window.onload = prank;
+    </script>
+</head>
+<body>
+    <h1>🔴 SECURITY ALERT</h1>
+    <p id="warning">Your phone has been compromised.</p>
+</body>
+</html>
